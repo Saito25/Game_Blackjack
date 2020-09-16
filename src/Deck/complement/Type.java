@@ -1,4 +1,4 @@
-package Deck.complement;
+package deck.complement;
 
 /**
  * Enum que contiene los iconos de los 4 palos

@@ -1,6 +1,6 @@
 package player;
 
-import Deck.Card;
+import deck.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public abstract class Player {
     /**
      * Dinero que tiene el jugador para apostar.
      */
-    private int money;
+    private int money = 0;
 
     /**
      * Mano actual de cada jugador. Se compone de cartas
@@ -54,6 +54,19 @@ public abstract class Player {
         currentHand.add(card);
     }
 
+    /**
+     * Este método borra todas las manos de los jugadores.
+     */
+    public void cleanHand() {
+        currentHand.clear();
+    }
+
+    /**
+     * Este método devuelve la puntuación total de la mano del
+     * jugador. Convirtiendo un As en un 11 cuando sea necesario.
+     *
+     * @return
+     */
     public int currentScord() {
         int scord = 0;
         int asCounter = 0;
@@ -79,6 +92,26 @@ public abstract class Player {
         return scord;
     }
 
+    /**
+     * Añade dinero a un jugador.
+     * @param money
+     */
+    public void addMoney(int money) {
+        this.money += money;
+    }
+
+    /**
+     * Reduce el dinero de un jugador, si este se queda a 0 o menos,
+     * lanza una excepción
+     * @param money
+     */
+    public void lossMoney(int money) throws IllegalArgumentException {
+        if (this.money <= money) {
+            throw new IllegalArgumentException("Game over, jugador " + name);
+        }
+        this.money -= money;
+    }
+
     // GETTERS
 
     public String getName() {
@@ -92,6 +125,7 @@ public abstract class Player {
     public List<Card> getCurrentHand() {
         return currentHand;
     }
+
 
     // Object Methods
 

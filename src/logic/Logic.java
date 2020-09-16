@@ -1,8 +1,9 @@
 package logic;
 
-import Deck.Deck;
+import deck.Deck;
 import player.Human;
 import player.Player;
+import utility.ConsoleInput;
 
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public class Logic {
      */
     private final Player[] PLAYERS = new Player[2];
 
-    private final Scanner KEYBOARD = new Scanner(System.in);
+    private final ConsoleInput KEYBOARD = new ConsoleInput(new Scanner(System.in));
 
     // Constructors
 
@@ -52,7 +53,7 @@ public class Logic {
         }
 
         System.out.println("A continuación se mostrará la mano del jugador 1 (pulta enter para continuar): ");
-        KEYBOARD.nextLine();
+        KEYBOARD.readString();
 
         showHand(PLAYERS[0]);
     }
@@ -60,15 +61,16 @@ public class Logic {
     /**
      * Ese método muestra la mano de los jugadores, así como la suma de
      * su puntuación total actual.
+     *
      * @param player
      */
     private void showHand(Player player) {
         System.out.printf("Mano actual del jugador %s\n", player.getName());
 
-        player.getCurrentHand().stream()
+        player.getCurrentHand()
                 .forEach(card -> System.out.printf("%s%s  ", card.getPalo(), card.getName()));
 
-        System.out.printf(": ");
+        System.out.print(": ");
 
         System.out.println(player.currentScord());
 
@@ -88,30 +90,23 @@ public class Logic {
         System.out.println("    1. Coger otra carta");
         System.out.println("    2. pasar");
 
-        while (true) {
-            try {
-                option = KEYBOARD.nextInt();
-                KEYBOARD.nextLine();
-            } catch (Exception e) {
+        option = KEYBOARD.readIntInRangeInclusive(1, 2);
 
-            } finally {
-                switch (option) {
-                    case 1:
-                        takeNewCard(player);
-                        showHand(player);
-                        break;
-                    case 2:
-                        changePlayerTurn(player);
-                        break;
-                }
-            }
-
+        switch (option) {
+            case 1:
+                takeNewCard(player);
+                showHand(player);
+                break;
+            case 2:
+                changePlayerTurn(player);
+                break;
         }
     }
 
     /**
      * Este método toma una carta y comprueba si quedan o no
      * más cartas en el mazo.
+     *
      * @param player
      */
     private void takeNewCard(Player player) {
@@ -126,11 +121,12 @@ public class Logic {
      * Esta clase cambia los turnos de los jugadores, para que ambos puedan
      * pedir carta. Cuando ambos pasen, se les permite apostar, hasta la mitad
      * del que tenga menos dinero.
+     *
      * @param player
      */
     private void changePlayerTurn(Player player) {
 
-        if(player.equals(PLAYERS[0])) {
+        if (player.equals(PLAYERS[0])) {
             showHand(PLAYERS[1]);
         } else {
             playersBet();
@@ -142,25 +138,139 @@ public class Logic {
      * la mitad del que tenga menos
      */
     private void playersBet() {
-        int maxBet = Math.max(PLAYERS[0].getMoney(), PLAYERS[1].getMoney()) / 2;
-        int playerBet = 0;
-        int currentBet = 0;
+        int maxBet = Math.min(PLAYERS[0].getMoney(), PLAYERS[1].getMoney()) / 2;
+        int playerElection = 0;
+        int currentBet1 = 0;
+        int currentBet2 = 0;
 
-        while(true) {
-            System.out.printf("¿Jugador, %s, cuánto apuesta?\n", PLAYERS[0].getName());
+        System.out.printf("Jugador, %s, ¿cuál es tu apuesta?\n", PLAYERS[0].getName());
 
-            try {
-                playerBet = KEYBOARD.nextInt();
-                break;
-            } catch (Exception e) {
-
-            } finally {
-                KEYBOARD.nextLine();
-            }
-        }
+        currentBet1 = KEYBOARD.readIntInRangeInclusive(1, maxBet);
 
         System.out.printf("Jugador, %s, ¿quieres igualar o superar la apuesta?\n", PLAYERS[1].getName());
+        System.out.println("    1. Igualar");
+        System.out.println("    2. Subir");
 
+        playerElection = KEYBOARD.readIntInRangeInclusive(1, 2);
+
+        if (playerElection == 1) {
+            whoWin(currentBet1);
+        } else {
+            currentBet2 = KEYBOARD.readIntInRangeInclusive(currentBet1, maxBet);
+
+            System.out.printf("Jugador, %s, ¿quieres igualar la apuesta?\n", PLAYERS[0].getName());
+            System.out.println("    1. Pasar");
+            System.out.println("    2. Igualar");
+
+
+            playerElection = KEYBOARD.readIntInRangeInclusive(1, 2);
+            switch (playerElection) {
+                case 1:
+                    PLAYERS[1].addMoney(currentBet1);
+                    try {
+                        PLAYERS[0].lossMoney(currentBet1);
+                    } catch (Exception e) {
+                        endGame(PLAYERS[1]);
+                    }
+
+                    showAndCleanHand();
+                    initGame();
+                    break;
+
+                case 2:
+                    whoWin(currentBet2);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * El método determina que jugador ha ganado la apuesta, si es que
+     * alguno ganó. Limpia las manos y retoma el juego o lo finaliza.
+     *
+     * @param bet
+     */
+    private void whoWin(int bet) {
+        int scordPlayer1 = PLAYERS[0].currentScord();
+        int scordPlayer2 = PLAYERS[1].currentScord();
+        Player winPlayer;
+
+        if ((scordPlayer1 > 21 && scordPlayer2 > 21)
+                || (scordPlayer1 == scordPlayer2)) {
+
+            System.out.println("Ambos jugadores empataron, nadie gana esta partida");
+
+            showAndCleanHand();
+
+            initGame();
+        }
+
+        if (scordPlayer1 > scordPlayer2) {
+
+            try {
+
+                if (scordPlayer1 == 21) {
+                    PLAYERS[0].addMoney(bet * 2);
+                    PLAYERS[1].lossMoney(bet * 2);
+                } else {
+                    PLAYERS[0].addMoney(bet);
+                    PLAYERS[1].lossMoney(bet);
+                }
+            } catch (Exception e) {
+                endGame(PLAYERS[0]);
+            }
+
+        } else {
+            try {
+                if (scordPlayer2 == 21) {
+                    PLAYERS[1].addMoney(bet * 2);
+                    PLAYERS[0].lossMoney(bet * 2);
+                } else {
+                    PLAYERS[1].addMoney(bet);
+                    PLAYERS[0].lossMoney(bet);
+                }
+            } catch (Exception e) {
+                endGame(PLAYERS[1]);
+            }
+
+        }
+
+        showAndCleanHand();
+
+        initGame();
+
+    }
+
+    /**
+     * Este método límpia y muestra el dinero de cada jugador.
+     */
+    private void showAndCleanHand() {
+        for (Player player : PLAYERS) {
+            System.out.printf("Jugador, %s, dinero actual: %d \n", player.getName(), player.getMoney());
+            player.cleanHand();
+        }
+    }
+
+    /**
+     * Este método finaliza una partida. Permite terminar el juego
+     * o empezar uno nuevo.
+     *
+     * @param player
+     */
+    private void endGame(Player player) {
+        int election;
+
+        System.out.printf("¡Enhorabuena, %s, has ganado!\n", player.getName());
+
+        System.out.println("Queréis la revancha?");
+
+        election = KEYBOARD.readIntInRangeInclusive(1, 2);
+
+        if (election == 1) {
+            new Logic();
+        } else {
+            System.exit(0);
+        }
 
     }
 
@@ -177,19 +287,18 @@ public class Logic {
 
         for (int i = 0; i < PLAYERS.length; i++) {
             System.out.printf("¿Nombre del %d jugador?\n", i + 1);
-            name = KEYBOARD.nextLine();
+            name = KEYBOARD.readString();
 
 
             while (true) {
                 System.out.printf("¿Dinero inicial de %s? ", name);
                 try {
-                    gold = KEYBOARD.nextInt();
+                    gold = KEYBOARD.readInt();
                     break;
                 } catch (Exception e) {
 
-                }
-                finally {
-                    KEYBOARD.nextLine();
+                } finally {
+                    KEYBOARD.readInt();
                 }
             }
 

@@ -1,6 +1,6 @@
-package Deck;
+package deck;
 
-import Deck.complement.Type;
+import deck.complement.Type;
 
 import java.util.Objects;
 

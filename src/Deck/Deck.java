@@ -1,13 +1,11 @@
-package Deck;
+package deck;
 
-import Deck.complement.Figure;
-import Deck.complement.Type;
+import deck.complement.Figure;
+import deck.complement.Type;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Clase que contiene las cartas necesarias para cada partida.
