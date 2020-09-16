@@ -4,6 +4,7 @@ import Deck.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Clase abstracta padre de todo jugador.
@@ -53,7 +54,30 @@ public abstract class Player {
         currentHand.add(card);
     }
 
+    public int currentScord() {
+        int scord = 0;
+        int asCounter = 0;
+        Card currentCard;
 
+        for(int i = 0; i < currentHand.size(); i++) {
+            currentCard = currentHand.get(i);
+            scord += currentCard.getValue();
+
+            if(currentCard.getName().equalsIgnoreCase("As")) {
+                asCounter++;
+            }
+        }
+
+        for(int i = 1; i <= asCounter; i++) {
+            if(scord <= 11) {
+                scord += 10;
+            } else {
+                break;
+            }
+        }
+
+        return scord;
+    }
 
     // GETTERS
 
@@ -67,5 +91,22 @@ public abstract class Player {
 
     public List<Card> getCurrentHand() {
         return currentHand;
+    }
+
+    // Object Methods
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return money == player.money &&
+                name.equals(player.name) &&
+                Objects.equals(currentHand, player.currentHand);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, money, currentHand);
     }
 }
