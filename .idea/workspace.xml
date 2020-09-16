@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4bff60c0-1458-41e0-89a3-6b101b043e8c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,19 +39,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -64,7 +54,10 @@
       <option name="presentableId" value="Default" />
       <updated>1600014365747</updated>
       <workItem from="1600014367086" duration="6055000" />
-      <workItem from="1600079103610" duration="716000" />
+      <workItem from="1600079103610" duration="1045000" />
+      <workItem from="1600092896721" duration="6114000" />
+      <workItem from="1600100325485" duration="689000" />
+      <workItem from="1600245386816" duration="80000" />
     </task>
     <servers />
   </component>
@@ -72,30 +65,38 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1600019110812">
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1600098448046">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1600019110812" />
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1600098448046" />
+    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600245462298">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1600245462298" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600081569232">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1600081569232" />
     <state x="371" y="87" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1600020360661">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="87" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1280.680@0.0.1280.680" timestamp="1600020360661" />
-    <state width="1237" height="204" key="GridCell.Tab.0.bottom" timestamp="1600020623031">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1600099062042">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
-    <state width="1237" height="204" key="GridCell.Tab.0.center" timestamp="1600020623031">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600099062042" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1600099062042">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
-    <state width="1237" height="204" key="GridCell.Tab.0.left" timestamp="1600020623031">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600099062042" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1600099062041">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
-    <state width="1237" height="204" key="GridCell.Tab.0.right" timestamp="1600020623031">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600099062041" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1600099062042">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="204" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600099062042" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1600020623031">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -112,5 +113,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600098296407">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600098296407" />
   </component>
 </project>
