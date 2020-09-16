@@ -140,46 +140,30 @@ public class Logic {
     private void playersBet() {
         int maxBet = Math.min(PLAYERS[0].getMoney(), PLAYERS[1].getMoney()) / 2;
         int playerElection = 0;
-        int currentBet1 = 0;
+        int currentBet1 = 1;
         int currentBet2 = 0;
 
-        System.out.printf("Jugador, %s, ¿cuál es tu apuesta?\n", PLAYERS[0].getName());
 
-        currentBet1 = KEYBOARD.readIntInRangeInclusive(1, maxBet);
+        for (Player player : PLAYERS) {
+            System.out.printf("Jugador, %s, haz tu apuesta. (min: %d, máx: %d)\n",
+                        player.getName(), currentBet1, maxBet);
 
-        System.out.printf("Jugador, %s, ¿quieres igualar o superar la apuesta?\n", PLAYERS[1].getName());
-        System.out.println("    1. Igualar");
-        System.out.println("    2. Subir");
+            currentBet1 = KEYBOARD.readIntInRangeInclusive(currentBet1, maxBet);
 
-        playerElection = KEYBOARD.readIntInRangeInclusive(1, 2);
+            if(currentBet2 != currentBet1) {
+                currentBet2 = currentBet1;
+            }
 
-        if (playerElection == 1) {
-            whoWin(currentBet1);
-        } else {
-            currentBet2 = KEYBOARD.readIntInRangeInclusive(currentBet1, maxBet);
+            for (int i = 0; i < PLAYERS.length - 1; i++) {
+                System.out.printf("Jugador, %s, aceptas la puja?\n");
+                System.out.println("    1.- Igualar Puja");
+                System.out.println("    2.- Pasar Puja");
 
-            System.out.printf("Jugador, %s, ¿quieres igualar la apuesta?\n", PLAYERS[0].getName());
-            System.out.println("    1. Pasar");
-            System.out.println("    2. Igualar");
+                playerElection = KEYBOARD.readIntInRangeInclusive(1, 2);
 
-
-            playerElection = KEYBOARD.readIntInRangeInclusive(1, 2);
-            switch (playerElection) {
-                case 1:
-                    PLAYERS[1].addMoney(currentBet1);
-                    try {
-                        PLAYERS[0].lossMoney(currentBet1);
-                    } catch (Exception e) {
-                        endGame(PLAYERS[1]);
-                    }
-
-                    showAndCleanHand();
-                    initGame();
-                    break;
-
-                case 2:
-                    whoWin(currentBet2);
-                    break;
+                if() {
+                    
+                }
             }
         }
     }
@@ -238,8 +222,8 @@ public class Logic {
         showAndCleanHand();
 
         initGame();
-
     }
+
 
     /**
      * Este método límpia y muestra el dinero de cada jugador.
