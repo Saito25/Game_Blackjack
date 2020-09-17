@@ -21,11 +21,20 @@ public class Logic {
     private final Deck DECK = new Deck();
 
     /**
+     * Determina el número máximo de jugadores que podrán jugar
+     * una partida.
+     */
+    private final int PLAYERS_LIMIT = 5;
+
+    /**
      * Límite de jugadores 2. Contiene a los jugadores de
      * la partida.
      */
-    private final Player[] PLAYERS = new Player[2];
+    private Player[] players;
 
+    /**
+     * Atributo de utilidad. Necesario para las lecturas correctas de teclado.
+     */
     private final ConsoleInput KEYBOARD = new ConsoleInput(new Scanner(System.in));
 
     // Constructors
@@ -35,14 +44,23 @@ public class Logic {
      * a los jugadores y empezar el juego.
      */
     public Logic() {
-        //initPlayers();
-        testgame();
-        
+        players = new Player[howPlayers()];
+        initPlayers();
     }
 
 
 
     // CONSTRUCTOR METHODS
+
+    /**
+     * Este método determina cuantos jugadores habrá en la partida
+     * y cuántos de ellos habrá controlados por la máquina.
+     */
+    private int howPlayers() {
+        System.out.printf("Selecciona el número de jugadores sin incluir al crupier (máximo %d)\n", PLAYERS_LIMIT);
+
+        return KEYBOARD.readIntInRangeInclusive(1, PLAYERS_LIMIT);
+    }
 
     /**
      * Método que inicializa a los jugadores. Por defecto, este método
@@ -52,31 +70,13 @@ public class Logic {
 
         String name;
         int gold = 0;
+        int election = 0;
 
-        for (int i = 0; i < PLAYERS.length; i++) {
-            System.out.printf("¿Nombre del %d jugador?\n", i + 1);
-            name = KEYBOARD.readString();
+        System.out.printf("¿Cuántos de ellos serán controlados por la máquina? (Máximo %d)\n", PLAYERS_LIMIT - 1);
+        election = KEYBOARD.readIntInRangeInclusive(0, PLAYERS_LIMIT - 1);
 
 
-            while (true) {
-                System.out.printf("¿Dinero inicial de %s? ", name);
-                try {
-                    gold = KEYBOARD.readInt();
-                    break;
-                } catch (Exception e) {
-
-                } finally {
-                    KEYBOARD.readInt();
-                }
-            }
-
-            PLAYERS[i] = new Human(name, gold);
-        }
     }
 
-    private void testgame() {
-        PLAYERS[0] = new Human("Manuel", 100);
-        PLAYERS[1] = new Human("Juan", 100);
-    }
 
 } // Fin clase
