@@ -27,7 +27,7 @@ public abstract class Player {
     private int money = 0;
 
     /**
-     * Mano actual de cada jugador. Se compone de cartas
+     * Mano actual de cada jugador. Se compone de cartas.
      */
     private final List<Card> currentHand = new ArrayList<>();
 
@@ -68,20 +68,46 @@ public abstract class Player {
      * @return
      */
     public int currentScord() {
+
         int scord = 0;
         int asCounter = 0;
-        Card currentCard;
+        int value = 0;
 
-        for(int i = 0; i < currentHand.size(); i++) {
-            currentCard = currentHand.get(i);
-            scord += currentCard.getValue();
+        for(Card card : currentHand) {
+            /*
+                Recorremos la mano actual y vamos sumando sus valores.
+                Para valores entre 2 y 10, los sumanos tal cual. Pero para los valores
+                del 11 al 13, sumanos 10. El As siempre suma uno, pero puede llegar a sumar 11.
+             */
 
-            if(currentCard.getName().equalsIgnoreCase("As")) {
-                asCounter++;
+            value = card.getCARD_VALUES().getValue(); // Desencapsulamos el valor int de la carta
+
+            if(value >= 2 && value <= 10) {
+                scord += value;
+            } else {
+                switch (value) {
+                    case 11:
+                    case 12:
+                    case 13:
+                        scord += 10;
+                        break;
+
+                    case 14:
+                        scord += 1;
+                        asCounter += 1;
+                        break;
+                }
             }
+
+
         }
 
         for(int i = 1; i <= asCounter; i++) {
+            /*
+            Comprobamos si existe algún As en la mano y si la puntuación nos permite
+            transformarlo.
+             */
+
             if(scord <= 11) {
                 scord += 10;
             } else {
@@ -106,9 +132,9 @@ public abstract class Player {
      * @param money
      */
     public void lossMoney(int money) throws IllegalArgumentException {
-        if (this.money <= money) {
-            throw new IllegalArgumentException("Game over, jugador " + name);
-        }
+        /*
+        Hay que determinar cuándo un jugador ha perdido
+         */
         this.money -= money;
     }
 

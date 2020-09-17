@@ -1,6 +1,6 @@
 package deck;
 
-import deck.complement.Figure;
+import deck.complement.CardValues;
 import deck.complement.Type;
 
 import java.util.Arrays;
@@ -81,14 +81,9 @@ public class Deck {
      * @param type
      */
     private void makeDeck(Type type) {
-        cards[index++] = new Card(1, "As", type);
 
-        for (int i = 2; i <= 10; i++) {
-            cards[index++] = new Card(i, String.valueOf(i), type);
-        }
-
-        for(Figure figure : Figure.values()) {
-            cards[index++] = new Card(10, figure.toString(), type);
+        for(CardValues cardValues : CardValues.values()) {
+            cards[index++] = new Card(cardValues, type);
         }
     }
 

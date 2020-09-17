@@ -1,5 +1,6 @@
 package deck;
 
+import deck.complement.CardValues;
 import deck.complement.Type;
 
 import java.util.Objects;
@@ -14,53 +15,42 @@ public class Card {
 
     // CLASS ATRIBUTTES
     /**
-     * Valor base numérico de la carta.
+     * Valor y nombre de la carta, a partir de un Enum
      */
-    private final int value;
-
-    /**
-     * Es el nombre de la carta. Por ejemplo, el rey vale 10 puntos,
-     * pero sigue llamándose rey.
-     */
-    private final String name;
+    private final CardValues CARD_VALUES;
 
     /**
      * El palo de la carta corresponde con el símbolo que representa
      * a su familia.
      */
-    private final Type palo;
+    private final Type TYPE;
 
     /**
      * Constructor de la clase. Recibe los datos apropiados para crear
      * una carta.
      *
-     * @param value valor numérico de la carta
-     * @param name nombre de la carta
+     * @param cardValues valor de la carta (nombre y entero).
      * @param palo palo, familia, de la carta
      * @since 1
      */
-    public Card(int value, String name, Type palo) {
-        if(value < 1 || value > 10) {
-            throw new IllegalArgumentException("El valor no está dentro del rango adecuado");
-        }
-        Objects.requireNonNull(name, "El nombre no puede ser nulo");
-        Objects.requireNonNull(palo, "El palo no puede ser nulo");
+    public Card(CardValues cardValues, Type type) {
 
-        this.value = value;
-        this.name = name;
-        this.palo = palo;
+        Objects.requireNonNull(cardValues, "El valor de la carta no puede ser nulo");
+        Objects.requireNonNull(type, "El palo no puede ser nulo");
+
+        CARD_VALUES = cardValues;
+        TYPE = type;
     }
 
-        // Getters
-    public int getValue() {
-        return value;
+
+
+    // Getters
+
+    public CardValues getCARD_VALUES() {
+        return CARD_VALUES;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Type getPalo() {
-        return palo;
+    public Type getTYPE() {
+        return TYPE;
     }
 }

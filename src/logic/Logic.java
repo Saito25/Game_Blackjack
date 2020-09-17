@@ -5,6 +5,9 @@ import player.Human;
 import player.Player;
 import utility.ConsoleInput;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -32,6 +35,8 @@ public class Logic {
      */
     private Player[] players;
 
+    private final int BET;
+
     /**
      * Atributo de utilidad. Necesario para las lecturas correctas de teclado.
      */
@@ -45,7 +50,10 @@ public class Logic {
      */
     public Logic() {
         players = new Player[howPlayers()];
+
         initPlayers();
+
+        BET = chooseBet();
     }
 
 
@@ -78,5 +86,19 @@ public class Logic {
 
     }
 
+    /**
+     * Ese método sirve para determina cual será la apuesta entre los jugadores que se hará cada turno.
+     *
+     * @return un entero.
+     */
+    private int chooseBet() {
 
+        Integer maxBet = Arrays.stream(players).map(Player::getMoney).min(Comparator.naturalOrder()).get() / 2;
+
+        System.out.printf("Seleccione la apuesta por turno. Recuerde que no podrá ser cambiado " +
+                "a lo largo de la partida, por lo que se recomiendan apuestas acorde al dinero de cada jugador." +
+                " Apuesta mínima 1. Apuesta máxima %d\n", maxBet);
+
+        return KEYBOARD.readIntInRangeInclusive(1, maxBet);
+    }
 } // Fin clase
