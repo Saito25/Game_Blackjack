@@ -205,7 +205,7 @@ public class Logic {
      */
     private void howMoney() {
 
-        int money = BET / 2 * 3 + BET;;
+        int money = BET / 2 * 3 + BET;
         for (Player player: blackJackWinners) {
             System.out.printf("%s, ha ganado: %d\n", player.getName(), money);
             player.addMoney(money);
