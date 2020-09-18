@@ -30,7 +30,7 @@ public class Card {
      * una carta.
      *
      * @param cardValues valor de la carta (nombre y entero).
-     * @param palo palo, familia, de la carta
+     * @param  type, familia, de la carta
      * @since 1
      */
     public Card(CardValues cardValues, Type type) {
@@ -52,5 +52,10 @@ public class Card {
 
     public Type getTYPE() {
         return TYPE;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s%s", TYPE, CARD_VALUES.getNameEs());
     }
 }

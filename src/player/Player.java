@@ -1,10 +1,12 @@
 package player;
 
 import deck.Card;
+import deck.Deck;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Clase abstracta padre de todo jugador.
@@ -19,17 +21,17 @@ public abstract class Player {
     /**
      * Nombre del jugador.
      */
-    private final String name;
+    protected final String name;
 
     /**
      * Dinero que tiene el jugador para apostar.
      */
-    private int money = 0;
+    protected int money = 0;
 
     /**
      * Mano actual de cada jugador. Se compone de cartas.
      */
-    private final List<Card> currentHand = new ArrayList<>();
+    protected final List<Card> currentHand = new ArrayList<>();
 
     // CONSTRUCTOR
 
@@ -43,7 +45,24 @@ public abstract class Player {
         this.money = money;
     }
 
+    // ABSTRACT METHODS
+
+    /**
+     * Este método deberá ser implementado en los hijos. Determina
+     * el comportamiento de cada jugador, diferenciando entre los jugadores
+     * controlados por la máquina y los humanos.
+     */
+    public abstract void whatDo(Deck deck);
+
     // CLASS METHODS
+    public void showHandAndValue() {
+        String hand;
+
+        System.out.println(name);
+        hand = currentHand.stream().map(Card::toString).collect(Collectors.joining(" + ", "", ":"));
+
+        System.out.printf("%s %d\n", hand, currentScord());
+    }
 
     /**
      * Cada vez que el método es invocado, se añade una carta
@@ -92,7 +111,7 @@ public abstract class Player {
                         scord += 10;
                         break;
 
-                    case 14:
+                    case 1:
                         scord += 1;
                         asCounter += 1;
                         break;
@@ -116,6 +135,14 @@ public abstract class Player {
         }
 
         return scord;
+    }
+
+    /**
+     * Determina si el jugador tiene o no blackjack
+     * @return
+     */
+    public boolean isBlackJack() {
+        return currentScord() == 21 && currentHand.size() == 2;
     }
 
     /**

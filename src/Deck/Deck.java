@@ -52,11 +52,7 @@ public class Deck {
      * @return Una carta del mazo
      * @throws Exception
      */
-    public Card drawCard() throws Exception {
-        if(index == 52) {
-            throw new Exception("Mazo vacío");
-        }
-
+    public Card drawCard() {
         return cards[index++];
     }
 
@@ -90,7 +86,7 @@ public class Deck {
     /**
      * Método que recicla el deck, lo vuelve a barajar.
      */
-    private void shuffleDeck() {
+    public void shuffleDeck() {
         // Variable que usaremos para desordenar las cartas.
         List<Card> shuffleCards;
 

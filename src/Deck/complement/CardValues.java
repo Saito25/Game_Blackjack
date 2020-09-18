@@ -13,9 +13,9 @@ public enum CardValues {
     EIGHT("Ocho", 8),
     NINE("Nueve", 9),
     TEN("Diez", 10),
-    JACK("Once", 11),
-    QUEEN("Doce", 12),
-    KING("Trece", 13),
+    JACK("Jota", 11),
+    QUEEN("Reina", 12),
+    KING("Rey", 13),
     ACE("As", 1);
 
     /**

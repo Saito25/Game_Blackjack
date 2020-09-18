@@ -72,6 +72,10 @@
       <workItem from="1600245510722" duration="11845000" />
       <workItem from="1600266127315" duration="5331000" />
       <workItem from="1600338010527" duration="4776000" />
+      <workItem from="1600352227716" duration="9133000" />
+      <workItem from="1600375565759" duration="1421000" />
+      <workItem from="1600417881404" duration="63000" />
+      <workItem from="1600420409959" duration="2961000" />
     </task>
     <servers />
   </component>
@@ -79,10 +83,10 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1600340790264">
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1600359576959">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1600340790264" />
+    <state x="446" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1600359576959" />
     <state x="321" y="76" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600245462298">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -95,22 +99,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="87" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1280.680@0.0.1280.680" timestamp="1600020360661" />
-    <state width="1237" height="221" key="GridCell.Tab.0.bottom" timestamp="1600258095083">
+    <state width="1237" height="309" key="GridCell.Tab.0.bottom" timestamp="1600423395330">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="221" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600258095083" />
-    <state width="1237" height="221" key="GridCell.Tab.0.center" timestamp="1600258095083">
+    <state width="1237" height="309" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600423395330" />
+    <state width="1237" height="309" key="GridCell.Tab.0.center" timestamp="1600423395330">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="221" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600258095083" />
-    <state width="1237" height="221" key="GridCell.Tab.0.left" timestamp="1600258095083">
+    <state width="1237" height="309" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600423395330" />
+    <state width="1237" height="309" key="GridCell.Tab.0.left" timestamp="1600423395330">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="221" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600258095083" />
-    <state width="1237" height="221" key="GridCell.Tab.0.right" timestamp="1600258095083">
+    <state width="1237" height="309" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600423395330" />
+    <state width="1237" height="309" key="GridCell.Tab.0.right" timestamp="1600423395330">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="221" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600258095083" />
+    <state width="1237" height="309" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600423395330" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1600020623031">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -127,10 +131,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="204" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1600020623031" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600250959950">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1600376620090">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600250959950" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1600376620090" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Game_Blackjack$Main.ic" NAME="Main Coverage Results" MODIFIED="1600256947939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
